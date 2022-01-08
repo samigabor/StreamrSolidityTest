@@ -41,20 +41,19 @@ describe('PermissionRegistry', (): void => {
         });
     });
 
-    // describe('editItem()', (): void => {
-    //     it('updates item description', async (): Promise<void> => {
-    //         await registry.createItem('item4', 'desc item4');
-    //         expect(await registry.getItemDescription('item4')).to.equal('desc item4');
-    //         // await registry.editItem('item4', 'desc item4 updated');
-    //         // expect(await registry.getItemDescription('item4')).to.equal('desc item4 updated');
-    //     });
-    // });
+    describe('editItem()', (): void => {
+        it('updates item description', async (): Promise<void> => {
+            await registry.createItem('item4', 'desc item4');
+            expect(await registry.getItemDescription('item4')).to.equal('desc item4');
+            await registry.editItem('item4', 'desc item4 updated');
+            expect(await registry.getItemDescription('item4')).to.equal('desc item4 updated');
+        });
+    });
 
-    // describe('grantPermissions()', (): void => {
-    //     it('updates "view" permission to true', async (): Promise<void> => {
-    //         await registry.createItem('item3', 'desc item3');
-    //         // error
-    //         await registry.grantPermissions('item3', wallets[1].address, [true, true, false]);
-    //     });
-    // });
+    describe('grantPermissions()', (): void => {
+        it('updates "view" permission to true', async (): Promise<void> => {
+            await registry.createItem('item3', 'desc item3');
+            await registry.grantPermissions('item3', wallets[1].address, [true, true, false]);
+        });
+    });
 })

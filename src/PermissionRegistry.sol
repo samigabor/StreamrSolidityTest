@@ -26,7 +26,6 @@ contract PermissionRegistry {
     }
 
     mapping(string => string) private items;
-
     mapping(string => mapping(address => Permissions)) private itemPermissions;
 
     function createItem(string calldata _id, string calldata _description)
@@ -37,6 +36,14 @@ contract PermissionRegistry {
         itemPermissions[_id][msg.sender].toView = true;
         itemPermissions[_id][msg.sender].toEdit = true;
         itemPermissions[_id][msg.sender].toGrant = true;
+    }
+
+    function getItemDescription(string memory _id)
+        public
+        view
+        returns (string memory)
+    {
+        return items[_id];
     }
 
     function grantPermissions(
